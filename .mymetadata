@@ -2,8 +2,8 @@
 <project-module
   type="WEB"
   name="spring_mvc_jdbc"
-  id="myeclipse.1345321978053"
-  context-root="/spring"
+  id="myeclipse.1345516368592"
+  context-root="/spring_mvc_jdbc"
   j2ee-spec="5.0"
   archive="spring_mvc_jdbc.war">
   <attributes>
