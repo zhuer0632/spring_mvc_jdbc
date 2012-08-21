@@ -16,8 +16,9 @@ public class person
 
     @Autowired
     private PersonBiz personBiz;
-    
 
+
+    @RequestMapping("addperson")
     public ModelAndView addperson()
     {
         ModelAndView mod = new ModelAndView();

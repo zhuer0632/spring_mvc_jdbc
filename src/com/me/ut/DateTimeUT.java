@@ -112,9 +112,6 @@ public class DateTimeUT
     }
 
 
-    
-
-
     /**
      * 取得当前时间
      * 
@@ -122,7 +119,7 @@ public class DateTimeUT
      */
     public static Date getNow()
     {
-        return  new Date();
+        return new Date();
     }
 
 
@@ -254,5 +251,18 @@ public class DateTimeUT
 
         System.out.println(ut.validDateFormat("1988-05-05"));
 
+    }
+
+
+    public static Timestamp getNowstamp()
+    {
+        Timestamp time=new Timestamp(new Date().getTime());
+        return time;
+    }
+    
+    public static Timestamp getNowstamp(Date d)
+    {
+        Timestamp time=new Timestamp(d.getTime());
+        return time;
     }
 }
