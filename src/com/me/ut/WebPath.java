@@ -33,7 +33,8 @@ public class WebPath
 	    }
 
 	    
-	    public static String getClassPath(Class clz)
+	    @SuppressWarnings("unchecked")
+        public static String getClassPath(Class clz)
 	    {
 	        return getClassRootPath() + clz.getPackage().getName().replaceAll("\\.",
 	                                                                          "/");

@@ -3,8 +3,8 @@
 <html>
   <head>
     <title>登陆页面</title>
+    <meta content="text/html;charset=UTF-8" http-equiv="content-type">
   </head>
-  
   <body>
 	
 	${path}

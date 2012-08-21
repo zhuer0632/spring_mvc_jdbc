@@ -3,13 +3,23 @@
 <html>
 	<head>
 		<title>首页</title>
+		
 	</head>
 	<body>
-
+	
+	
 		${path}
-
 		<br>
 		${user.userName}
-	
+		
+		<br>
+		
+		<div>
+			<form action="${path}/person/addperson.do">
+				<input type="submit" value="添加"/>
+			</form>		
+			
+		</div>
+		
 	</body>
 </html>
