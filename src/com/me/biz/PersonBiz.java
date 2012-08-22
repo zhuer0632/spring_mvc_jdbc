@@ -5,14 +5,17 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sourceforge.jtds.jdbc.DateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.me.domain.VOPerson;
+import com.me.page.CurrentPage;
+import com.me.page.PaginationHelper;
+import com.me.page.PersonrowMapper;
 import com.me.ut.DateTimeUT;
 import com.me.ut.StringUT;
 
@@ -27,7 +30,9 @@ public class PersonBiz
     public List<VOPerson> listPerons()
     {
         List<VOPerson> list = new ArrayList<VOPerson>();
-        list = dao.queryForList("select * from t_person", VOPerson.class);
+        list = dao.queryForList(
+                "select * from t_person",
+                VOPerson.class);
         return list;
     }
 
@@ -43,20 +48,68 @@ public class PersonBiz
 
     }
 
-    
+
     @Transactional
     public void addperson()
     {
         String id = StringUT.getUUID();
-        Timestamp time=DateTimeUT.getNowstamp();
-        String insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('"
-                + id + "','"+time+"',22,'zhang',0)";
+        Timestamp time = DateTimeUT.getNowstamp();
+        String insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('" + id + "','" + time + "',22,'zhang',0)";
         dao.execute(insertSql);
-        
-        insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('"
-            + id + "','"+time+"',22,'zhang',false)";
+
+        insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('" + id + "','" + time + "',22,'zhang',false)";
         dao.execute(insertSql);
         StringUT.print(insertSql);
+
+    }
+
+
+    public static final int pageNum = 3;
+    public static final int pageSize = 20;
+
+
+    /**
+     * 测试jdbcTemplate的分页功能
+     */
+    public List<VOPerson> pagerSearch()
+    {
+        List<VOPerson> persons = new ArrayList<VOPerson>();
+
+        PaginationHelper<VOPerson> ph = new PaginationHelper<VOPerson>();
+        
+        CurrentPage<VOPerson> p = ph.fetchPage(
+                dao,
+                "SELECT count(*) FROM t_person WHERE age=?",
+                "SELECT * FROM t_person WHERE age=?",
+                new Object[]
+                {
+                    22
+                },
+                pageNum,
+                pageSize,
+                new PersonrowMapper());
+        
+        persons = p.getPageItems();
+        return persons;
+    }
+
+
+    public static void main(
+                            String[] args)
+    {
+        PersonBiz biz = new PersonBiz();
+        biz.test01();
+    }
+
+
+    private void test01()
+    {
+        ApplicationContext app = new ClassPathXmlApplicationContext(new String[]
+        {
+            "beans.xml"
+        });
+        dao = (JdbcTemplate) app.getBean("jdbcTemplate");
+        pagerSearch();
     }
 
 }

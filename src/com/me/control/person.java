@@ -28,6 +28,8 @@ public class person
         }
         catch (Exception e)
         {
+            //spring的异常类都是继承自RuntimeException
+            System.out.println(e.getClass().getName());
             e.printStackTrace();
         }
         mod.setViewName("index");
