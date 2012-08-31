@@ -57,7 +57,7 @@ public class PersonBiz
         String insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('" + id + "','" + time + "',22,'zhang',0)";
         dao.execute(insertSql);
 
-        insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('" + id + "','" + time + "',22,'zhang',false)";
+        insertSql = "insert into t_person(ID,birthday,age,userName,gender) values('" + id + "','" + time + "',22,'zhang',1)";
         dao.execute(insertSql);
         StringUT.print(insertSql);
 
