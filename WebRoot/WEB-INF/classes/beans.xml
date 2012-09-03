@@ -24,7 +24,7 @@
 		destroy-method="close">
 		<property name="driverClass" value="net.sourceforge.jtds.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:jtds:sqlserver://127.0.0.1:1433;databaseName=db_spring;SelectMethod=cursor" />
+			value="jdbc:jtds:sqlserver://192.168.1.101:1433;databaseName=db_spring;SelectMethod=cursor" />
 		<property name="user" value="sa" />
 		<property name="password" value="" />
 		<!-- 最多创建多少链接 -->
@@ -51,7 +51,7 @@
 	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- 声明一个jdbcTemplate,java类中@Autowired能按类型注入 -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" scope="singleton">
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" >
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
