@@ -23,7 +23,17 @@
 
 	function func() {
 		var result = getJson("", "${path}/TransCtrl/test00.do");
-		alert(result);
+		if(result==undefined)
+		{
+		alert("服务器端错误");
+		return;
+		}
+		else
+		{
+			if(result['diverr']==undefined){
+				alert(result['result']);
+			}
+		}
 	}
  
 </script>

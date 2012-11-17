@@ -29,12 +29,14 @@ public class TransCtrl
 		Map map = new HashMap();
 		try
 		{
+		    map.put("result", "000");
 			transTestBiz.test00();
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+		
 		return map;
 	}
 	
